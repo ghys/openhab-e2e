@@ -9,7 +9,7 @@ const PASSWORD = 'habopen'
 
 describe('setup wizard', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8080')
+    cy.visit('/')
     cy.contains('Sign in to grant')
     cy.get('input[name="username"]').focus().type(USERNAME)
     cy.get('input[name="password"]').first().focus().type(PASSWORD)
@@ -70,7 +70,7 @@ describe('setup wizard', () => {
     // find and click on the button to install add-ons
     cy.get('.setup-wizard #addons .button-large').contains('Select Add-ons to Install').click()
 
-    // verify the popup is display
+    // verify the popup is displayed
     cy.wait(500).get('.autocomplete-popup').find('.navbar .title').contains('Select Add-ons to Install')
 
     // select 4 add-ons to install

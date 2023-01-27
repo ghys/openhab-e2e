@@ -9,7 +9,7 @@ const PASSWORD = 'habopen'
 
 describe('first-time account creation', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8080')
+    cy.visit('/')
     cy.contains('Create a first administrator account to continue')
   })
 
