@@ -5,7 +5,7 @@
 const USERNAME = 'openhab'
 const PASSWORD = 'habopen'
 
-describe('the setup wizard works correctly', () => {
+describe('first-time account creation', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8080')
     cy.contains('Create a first administrator account to continue')
