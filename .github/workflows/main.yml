@@ -1,7 +1,8 @@
 name: Cypress Tests
 
 on:
-  - push
+  push: {}
+  workflow_dispatch: {}
 
 jobs:
   cypress-run:
