@@ -6,7 +6,7 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    container: cypress/included:12.3.0
+    #container: cypress/included:12.3.0
     
     services:
       openhab:
