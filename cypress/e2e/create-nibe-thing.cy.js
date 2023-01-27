@@ -7,7 +7,7 @@ describe('Nibe heat pump thing', () => {
     cy.login()
   })
 
-  it('creates the simulator thing and links an item succesfully', () => {
+  it('creates the simulator thing and links an item succesfull', () => {
 
     cy.visit('/settings/things/')
 
@@ -16,7 +16,7 @@ describe('Nibe heat pump thing', () => {
     cy.get('.page-current li').contains('NibeHeatPump').click()
     cy.get('.page-current li').contains('f470-simulator').click()
 
-    cy.get('.page-current .item-inner').first().should('contain', 'Unique ID')
+    cy.get('.page-current .item-inner').first().should('contain', 'Unique ID').find('input').focus()
     cy.get('.page-current .item-inner').first().find('input').clear()
     cy.get('.page-current .item-inner').first().find('input').type('f470pumpsim')
 
