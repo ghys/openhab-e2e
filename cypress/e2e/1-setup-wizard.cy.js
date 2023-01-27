@@ -27,7 +27,7 @@ describe('setup-wizard', () => {
     // select the German option
     cy.get('.smart-select-page').find('input[value="de"]').parents('label').click({ force: true })
     // the item should now contain Sprache
-    cy.get('.setup-wizard #intro .item-link').first().contains('Sprache')
+    cy.wait(500).get('.setup-wizard #intro .item-link').first().contains('Sprache')
 
     // select the French option
     cy.get('.setup-wizard #intro .item-link').first().click()
