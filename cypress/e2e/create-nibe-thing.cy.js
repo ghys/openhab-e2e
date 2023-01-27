@@ -16,10 +16,15 @@ describe('Nibe heat pump thing', () => {
     cy.get('.page-current li').contains('NibeHeatPump').click()
     cy.get('.page-current li').contains('f470-simulator').click()
 
+    // wait for the config sheet to appear
+    cy.get('.page-current.thing-add-page .config-sheet').contains('Refresh Interval')
+
     cy.get('.page-current .item-inner').first().should('contain', 'Unique ID').find('input').focus()
     cy.get('.page-current .item-inner').first().find('input').clear()
+    cy.get('.page-current .item-inner').first().find('input').scrollIntoView()
     cy.get('.page-current .item-inner').first().find('input').type('f470pumpsim')
 
+    cy.get('.page-current .button-fill').contains('Create Thing').wait(500).scrollIntoView()
     cy.get('.page-current .button-fill').contains('Create Thing').wait(500).click()
 
     // this sometimes happens, ignore
