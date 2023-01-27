@@ -1,11 +1,13 @@
 /// <reference types="cypress" />
 
-/* This spec will run through the initial account creation */
+/* This spec will run through the setup wizard, installing 4 add-ons */
+/* It should not be run again once it has successfully completed */
+/* Further specs depend on it having completed */
 
 const USERNAME = 'openhab'
 const PASSWORD = 'habopen'
 
-describe('setup-wizard', () => {
+describe('setup wizard', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8080')
     cy.contains('Sign in to grant')
@@ -55,4 +57,45 @@ describe('setup-wizard', () => {
     // we're back to the first step
     cy.wait(500).get('.setup-wizard #intro').should('have.class', 'tab-active')
   })
+
+  it('installs the add-ons and finally displays the "Welcome to openHAB" screen', () => {
+    cy.get('.setup-wizard #intro .button').first().contains('Begin Setup').click()
+    // has navigated to the second step
+    cy.wait(500).get('.setup-wizard #location').should('have.class', 'tab-active')
+    // find the last button ('Configure in Settings later') and click on it
+    cy.get('.setup-wizard #location .button').last().contains('Configure in Settings Later').click()
+    // has navigated to the third step
+    cy.wait(500).get('.setup-wizard #addons').should('have.class', 'tab-active')
+
+    // find and click on the button to install add-ons
+    cy.get('.setup-wizard #addons .button-large').contains('Select Add-ons to Install').click()
+
+    // verify the popup is display
+    cy.wait(500).get('.autocomplete-popup').find('.navbar .title').contains('Select Add-ons to Install')
+
+    // select 4 add-ons to install
+    cy.get('.autocomplete-popup input[type=search]').clear().type('astro')
+    cy.get('.autocomplete-popup li label').contains('Astro Binding').click()
+    cy.get('.autocomplete-popup input[type=search]').clear().type('http')
+    cy.get('.autocomplete-popup li label').contains('HTTP Binding').click()
+    cy.get('.autocomplete-popup input[type=search]').clear().type('JavaScript Scripting')
+    cy.get('.autocomplete-popup li label').contains('JavaScript Scripting').click()
+    cy.get('.autocomplete-popup input[type=search]').clear().type('nibe heat pump')
+    cy.get('.autocomplete-popup li label').contains('Nibe Heat Pump').click()
+
+    cy.go("back")
+
+    cy.wait(500).get('.setup-wizard #addons .list').find('li').should('have.length', 4)
+
+    cy.get('.setup-wizard #addons').find('.button-fill').last().contains('Install 4 add-ons').click()
+
+    // wait up to 120s for the add-ons to be installed - the "finish" step should be the active one
+    cy.get('.setup-wizard .tab-active').contains('Welcome to openHAB!', { timeout: 120000 })
+
+    cy.get('.setup-wizard .tab-active .button').contains('Get Started').click().wait(1000)
+
+    // the home page should now be displayed
+    cy.wait(1000).get('.setup-wizard .view-main').contains('Overview')
+  })
+
 })

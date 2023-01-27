@@ -1,6 +1,8 @@
 /// <reference types="cypress" />
 
 /* This spec will run through the initial account creation */
+/* It should not be run again once it has successfully completed */
+/* Further specs depend on it having completed */
 
 const USERNAME = 'openhab'
 const PASSWORD = 'habopen'
