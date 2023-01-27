@@ -1,0 +1,79 @@
+name: Cypress Tests
+
+on:
+  - push
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    container: cypress/included:12.3.0
+    
+    services:
+      openhab:
+        image: openhab/openhab:4.0.0-snapshot
+        ports:
+          - 8080:8080
+        
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      
+      - name: Cypress.io
+        # You may pin to the exact commit or the version.
+        # uses: cypress-io/github-action@37c511bc322f112c2dd629d3610f4f096bc80096
+        uses: cypress-io/github-action@v5.0.5
+        with:
+          # Sends test results to Cypress Dashboard
+          #record: # optional
+          # Set configuration values. Separate multiple values with a comma. The values set here override any values set in your configuration file.
+          #config: # optional
+          # Path to the cypress config file where configuration values are set.
+          #config-file: # optional, default is 
+          # Sets Cypress environment variables
+          #env: # optional
+          # Name of the browser to use
+          #browser: # optional
+          # Command that overrides cypress run
+          #command: # optional
+          # Command for starting local server in the background
+          #start: # optional
+          # A different start command on Windows
+          #start-windows: # optional
+          # Command to run in build step before starting tests
+          #build: # optional
+          # Whether or not to run install
+          #install: # optional
+          # Custom install command to use
+          #install-command: # optional
+          # Whether or not to run tests
+          #runTests: # optional
+          # Local server URL to wait for
+          wait-on: http://localhost:8080
+          # Amount of time to wait for wait-on url to be available
+          #wait-on-timeout: # optional
+          # Whether or not to load balance tests using multiple containers
+          #parallel: # optional
+          # Group setting for tests
+          #group: # optional
+          # Tag setting for tests
+          #tag: # optional
+          # Working directory containing Cypress folder
+          #working-directory: # optional
+          # Whether or not to use headed mode
+          #headed: # optional
+          # Provide a specific specs to run
+          #spec: # optional
+          # Path of project to run
+          #project: # optional
+          # You can prefix the default test command using the command-prefix option.
+          #command-prefix: # optional
+          # ID associates multiple CI machines to one test run
+          #ci-build-id: # optional
+          # Custom cache key
+          #cache-key: # optional
+          # Whether or not to silence any Cypress specific output from stdout
+          #quiet: # optional
+          # Lets the action know that Cypress is running component tests and not e2e tests
+          #component: # optional
