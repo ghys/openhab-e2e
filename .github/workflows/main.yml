@@ -8,7 +8,9 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     #container: cypress/included:12.3.0
-    container: cypress/browsers:node-16.18.1-chrome-109.0.5414.74-1-ff-109.0-edge-109.0.1518.52-1
+    container:
+      image: cypress/browsers:node-16.18.1-chrome-109.0.5414.74-1-ff-109.0-edge-109.0.1518.52-1
+      options: --user 1001
     
     services:
       openhab:
