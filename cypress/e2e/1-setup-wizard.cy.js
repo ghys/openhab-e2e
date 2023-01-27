@@ -95,7 +95,7 @@ describe('setup wizard', () => {
     cy.get('.setup-wizard .tab-active .button').contains('Get Started').click().wait(1000)
 
     // the home page should now be displayed
-    cy.wait(1000).get('.setup-wizard .view-main').contains('Overview')
+    cy.wait(1000).get('.home-nav').contains('Overview')
   })
 
 })
