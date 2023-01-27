@@ -15,8 +15,8 @@ jobs:
     services:
       openhab:
         image: openhab/openhab:4.0.0-snapshot
-        ports:
-          - 8080:8080
+        #ports:
+        #  - 8080:8080
         
     steps:
       - name: Checkout
@@ -32,7 +32,7 @@ jobs:
           # Sends test results to Cypress Dashboard
           record: true
           # Set configuration values. Separate multiple values with a comma. The values set here override any values set in your configuration file.
-          #config: # optional
+          config: baseUrl=http://openhab:8080
           # Path to the cypress config file where configuration values are set.
           #config-file: # optional, default is 
           # Sets Cypress environment variables
