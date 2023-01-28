@@ -7,7 +7,7 @@
 const USERNAME = 'openhab'
 const PASSWORD = 'habopen'
 
-describe('first-time account creation', () => {
+describe('first-time account creation', { browser: 'chrome' }, () => {
   beforeEach(() => {
     cy.visit('/')
     cy.contains('Create a first administrator account to continue')

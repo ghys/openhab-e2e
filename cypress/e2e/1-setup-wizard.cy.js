@@ -7,7 +7,7 @@
 const USERNAME = 'openhab'
 const PASSWORD = 'habopen'
 
-describe('setup wizard', () => {
+describe('setup wizard', { browser: 'chrome' }, () => {
   beforeEach(() => {
     cy.visit('/')
     cy.contains('Sign in to grant')

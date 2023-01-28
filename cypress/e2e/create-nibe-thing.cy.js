@@ -7,7 +7,7 @@ describe('Nibe heat pump thing', () => {
     cy.login()
   })
 
-  it('creates the simulator thing and links an item succesfull', () => {
+  it('creates the simulator thing and links an item succesfully', () => {
 
     cy.visit('/settings/things/')
 
