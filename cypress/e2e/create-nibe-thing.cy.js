@@ -48,11 +48,10 @@ describe('Nibe heat pump thing', () => {
     cy.get('.page-current .list li').contains('Create a new Item').click()
     cy.get('.page-current .button-fill').contains('Link').wait(500).click().wait(500)
 
-    // go back to the items list and check the link
-    cy.visit('/settings/items/')
-    cy.wait(500).get('.page-current .list .itemlist-item').contains('BT1 Outdoor Temperature').click()
+    // go to the item's page
+    cy.visit('/settings/items/Simulator_for_Nibe_F470_Heat_Pumps_BT1_Outdoor_Temperature')
 
-    // check that the state contains °C
+    // check that the state contains °C (this means the link is working)
     cy.get('.page-current .after-item-header .card .label-card-content').contains('°C')
   })
 
