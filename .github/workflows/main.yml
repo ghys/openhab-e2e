@@ -5,7 +5,7 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  chrome:
+  cypress:
     runs-on: ubuntu-latest
     #container: cypress/included:12.3.0
     container:
