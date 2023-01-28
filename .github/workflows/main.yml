@@ -32,7 +32,7 @@ jobs:
           # Sends test results to Cypress Dashboard
           record: true
           # Set configuration values. Separate multiple values with a comma. The values set here override any values set in your configuration file.
-          config: baseUrl=http://openhab:8080
+          config: video=false,baseUrl=http://openhab:8080
           # Path to the cypress config file where configuration values are set.
           #config-file: # optional, default is 
           # Sets Cypress environment variables
@@ -54,7 +54,7 @@ jobs:
           # Whether or not to run tests
           #runTests: # optional
           # Local server URL to wait for
-          wait-on: http://openhab:8080,video=false # video on Firefox is not working, see https://github.com/cypress-io/cypress/issues/18415
+          wait-on: http://openhab:8080 # video on Firefox is not working, see https://github.com/cypress-io/cypress/issues/18415
           # Amount of time to wait for wait-on url to be available
           #wait-on-timeout: # optional
           # Whether or not to load balance tests using multiple containers
