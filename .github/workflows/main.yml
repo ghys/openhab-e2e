@@ -14,7 +14,7 @@ jobs:
     
     services:
       openhab:
-        image: openhab/openhab:4.0.0-snapshot
+        image: openhab/openhab:4.1.0-snapshot
         #ports:
         #  - 8080:8080
         
