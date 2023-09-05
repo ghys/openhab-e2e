@@ -85,7 +85,7 @@ describe('setup wizard', { browser: 'chrome' }, () => {
 
     cy.go("back")
 
-    cy.wait(500).get('.setup-wizard #addons .list').find('li').should('have.length', 4)
+    cy.wait(500).get('.setup-wizard #addons .list').find('li').should('have.length', 5)
 
     cy.get('.setup-wizard #addons').find('.button-fill').last().contains('Install 4 add-ons').click()
 
