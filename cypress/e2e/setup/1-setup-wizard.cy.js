@@ -87,7 +87,7 @@ describe('setup wizard', { browser: 'chrome' }, () => {
 
     cy.wait(500).get('.setup-wizard #addons .list').find('li').should('have.length', 5)
 
-    cy.get('.setup-wizard #addons').find('.button-fill').last().contains('Install 4 add-ons').click()
+    cy.get('.setup-wizard #addons').find('.button-fill').last().contains('Install 5 add-ons').click()
 
     // wait up to 120s for the add-ons to be installed - the "finish" step should be the active one
     cy.get('.setup-wizard .tab-active').contains('Welcome to openHAB!', { timeout: 120000 })
